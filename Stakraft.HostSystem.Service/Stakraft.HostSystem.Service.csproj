@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Service\Impl\" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.22.1" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.14" />
+    <PackageReference Include="SSH.NET" Version="2024.1.0" />
+    <PackageReference Include="System.DirectoryServices" Version="8.0.0" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stakraft.HostSystem.Support\Stakraft.HostSystem.Support.csproj" />
+    <ProjectReference Include="..\Stakraft.HostSystem.Repository\Stakraft.HostSystem.Repository.csproj" />
   </ItemGroup>
 
 </Project>
