@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ServiceDto\" />
     <Folder Include="Service\Impl\" />
   </ItemGroup>
 
