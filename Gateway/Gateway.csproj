@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Stakraft.HostSystem.Repository\Stakraft.HostSystem.Repository.csproj" />
+    <ProjectReference Include="..\Stakraft.HostSystem.Service\Stakraft.HostSystem.Service.csproj" />
+    <ProjectReference Include="..\Stakraft.HostSystem.Support\Stakraft.HostSystem.Support.csproj" />
   </ItemGroup>
 
 </Project>

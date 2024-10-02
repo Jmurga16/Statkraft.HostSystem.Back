@@ -1,8 +1,13 @@
+using Hangfire;
+using Hangfire.MemoryStorage;
+
 using Gateway.Middleware;
 using Gateway.Services;
 using Microsoft.EntityFrameworkCore;
 using Stakraft.HostSystem.Repository.Entity;
 using Stakraft.HostSystem.Support.soporte;
+using Serilog.Events;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,23 +23,62 @@ builder.Services.AddDbContext<HostToHostDbContext>(options => options.UseSqlServ
 builder.Services.ControlarCorsOrigin();
 //Agregar Tokens
 //builder.Services.ControlarToken(configuration);
-
-
+//Controladores
 builder.Services.AddControllers(options => options.Filters.Add(new HttpResponseExceptionFilter()));
+//Excepcion de Peticion
+builder.Services.ControlarExcepcionPeticion();
 
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = null;
+});
 
+//Inyeccion de Dependencia 
+builder.Services.AddDependency();
 
+//Configuracion HangFire
+builder.Services.AddHangfire(config =>
+                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                 .UseSimpleAssemblyNameTypeSerializer()
+                 .UseDefaultTypeSerializer()
+                 .UseMemoryStorage()
+                 );
+builder.Services.AddHangfireServer();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//Documentacion Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(config =>
 {
     config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Api Host to Host 2024" });
 });
 
-builder.Services.AddDependency();
+
+//Configuracion de LOG
+void SetupSerilog(IConfiguration configurationApp)
+{
+    var path = configurationApp["Serilog:PathLog"];
+    var pathErrorFinal = Path.Combine(path + "host-log-error.txt");
+    var pathDebuFinal = Path.Combine(path + "host-log-debug.txt");
+    Console.WriteLine("SetupSerilog" + Directory.GetCurrentDirectory());
+    var configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json").Build();
+
+    Log.Logger = new LoggerConfiguration().ReadFrom
+        .Configuration(configuration)
+        .Enrich.FromLogContext()
+        .MinimumLevel.Debug()
+        .WriteTo.Console()
+      //.WriteTo.RollingFile(pathErrorFinal, LogEventLevel.Warning, retainedFileCountLimit: 15)
+      //.WriteTo.RollingFile(pathDebuFinal, LogEventLevel.Debug, retainedFileCountLimit: 1)
+      .CreateLogger();
+    Log.Debug("Successfully setup Serilog");
+}
+
 
 var app = builder.Build();
+
+app.UseHangfireDashboard();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
