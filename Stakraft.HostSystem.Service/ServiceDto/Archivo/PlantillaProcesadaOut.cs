@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Stakraft.HostSystem.Support.SoporteJsonConverter;
+using System.Text.Json.Serialization;
 
 namespace Stakraft.HostSystem.Service.ServiceDto.Archivo
 {

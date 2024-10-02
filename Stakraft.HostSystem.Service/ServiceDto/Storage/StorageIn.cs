@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Stakraft.HostSystem.Support.SoporteJsonConverter;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Stakraft.HostSystem.Service.ServiceDto.Storage
 {

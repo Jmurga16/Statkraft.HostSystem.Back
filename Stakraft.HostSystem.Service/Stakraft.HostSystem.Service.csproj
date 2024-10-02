@@ -10,4 +10,8 @@
     <Folder Include="Service\Impl\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Stakraft.HostSystem.Support\Stakraft.HostSystem.Support.csproj" />
+  </ItemGroup>
+
 </Project>
