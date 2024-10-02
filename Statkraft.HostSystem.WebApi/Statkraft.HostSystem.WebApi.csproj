@@ -13,4 +13,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Gateway\Gateway.csproj" />
+    <ProjectReference Include="..\Stakraft.HostSystem.Service\Stakraft.HostSystem.Service.csproj" />
+  </ItemGroup>
+
 </Project>
