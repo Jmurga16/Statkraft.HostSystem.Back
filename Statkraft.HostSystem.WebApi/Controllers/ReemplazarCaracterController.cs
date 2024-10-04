@@ -5,7 +5,7 @@ using Stakraft.HostSystem.Service.ServiceDto.ReemplazarCaracter;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReemplazarCaracterController : ControllerBase

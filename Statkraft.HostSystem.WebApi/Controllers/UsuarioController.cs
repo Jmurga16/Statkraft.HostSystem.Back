@@ -18,7 +18,7 @@ namespace Statkraft.HostSystem.WebApi.Controllers
         }
 
         [HttpPost("listar")]
-        public ActionResult<List<UsuarioDto>> ListarUsuarios(string dato)
+        public ActionResult<List<UsuarioDto>> ListarUsuarios(string? dato)
         {
             var usuarios = _usuarioService.ListarUsuarios(false);
             return usuarios;

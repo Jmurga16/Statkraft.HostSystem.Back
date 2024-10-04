@@ -7,7 +7,7 @@ using Stakraft.HostSystem.Support.SoporteEnum;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ArchivoController : Controller
@@ -33,6 +33,7 @@ namespace Statkraft.HostSystem.WebApi.Controllers
             var dato = _archivoService.ListarBandejaPlanillas(plantillaProcesadaIn);
             return respuesta.RespuestaOperacionCompletado(dato);
         }
+
         [HttpPost("bandeja-reenvio/{banco}")]
         public Respuesta<List<PlantillaProcesadaOut>> ListarBandejaReenvio(string banco)
         {
@@ -40,6 +41,7 @@ namespace Statkraft.HostSystem.WebApi.Controllers
             var dato = _archivoService.ListarBandejaReenvio(banco);
             return respuesta.RespuestaOperacionCompletado(dato);
         }
+
         [HttpPost("reingresar"), DisableRequestSizeLimit]
         public async Task<Respuesta<Object>> ReingresarArchivo(IFormFile file, [FromForm] string data)
         {
@@ -47,8 +49,6 @@ namespace Statkraft.HostSystem.WebApi.Controllers
             await _archivoService.ReingresarArchivo(file, data);
             return respuesta.RespuestaCorrecta(null, "Archivo guardado correctamente");
         }
-
-
 
         [HttpPost("detalle/{idArchivo}/{original}")]
         public async Task<IActionResult> ObtenerContenidoArchivo(int idArchivo, bool original)

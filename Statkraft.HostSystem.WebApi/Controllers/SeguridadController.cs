@@ -37,6 +37,7 @@ namespace Statkraft.HostSystem.WebApi.Controllers
             var dato = _seguridadService.Login(user);
             return respuesta.RespuestaCorrectaLogin(dato);
         }
+
         [HttpPost("refreshToken")]
         public Respuesta<TokenDto> RefreshToken(TokenDto tokenDto)
         {
@@ -44,6 +45,7 @@ namespace Statkraft.HostSystem.WebApi.Controllers
             var dato = _seguridadService.RefreshToken(tokenDto);
             return respuesta.RespuestaCorrecta(dato, "Refresh Token Completo");
         }
+
         [HttpPost("revokeToken")]
         public Respuesta<object> RevokarToken(TokenDto tokenDto)
         {

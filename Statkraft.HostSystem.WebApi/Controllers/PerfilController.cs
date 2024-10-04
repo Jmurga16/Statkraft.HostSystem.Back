@@ -5,7 +5,7 @@ using Stakraft.HostSystem.Service.ServiceDto.Perfil;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("mantenimiento/[controller]")]
     [ApiController]
     public class PerfilController : ControllerBase
@@ -18,7 +18,7 @@ namespace Statkraft.HostSystem.WebApi.Controllers
         }
 
         [HttpPost("listar")]
-        public ActionResult<List<PerfilDto>> ListarPerfiles(string dato)
+        public ActionResult<List<PerfilDto>> ListarPerfiles(string? dato)
         {
             var perfiles = _perfilService.ListarPerfiles(false);
             return perfiles;

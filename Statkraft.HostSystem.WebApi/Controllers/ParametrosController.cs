@@ -5,7 +5,7 @@ using Stakraft.HostSystem.Service.ServiceDto.Parametros;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ParametrosController : ControllerBase
