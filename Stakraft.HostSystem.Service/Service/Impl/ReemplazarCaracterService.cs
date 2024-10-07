@@ -20,7 +20,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
                 ValorOriginal = rCaracter.ValorOriginal,
                 ValorReemplazo = rCaracter.ValorReemplazo,
                 Activo = rCaracter.Activo,
-                Estado = Enum.GetName(typeof(Enums.EstadoRegistro), rCaracter.Activo)
+                Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(rCaracter.Activo))
 
             }).ToList();
 
@@ -40,7 +40,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
             _rCaracterRepository.CrearReemplazoCaracter(rCaracterEntity);
 
             rCaracter.IdRCaracter = rCaracterEntity.Id;
-            rCaracter.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), rCaracter.Activo);
+            rCaracter.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(rCaracter.Activo));
             return rCaracter;
         }
         public ReemplazarCaracterDto EditarReemplazoCaracter(int idRCaracter, ReemplazarCaracterDto rCaracter)
@@ -54,7 +54,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
             rCaracterEntity.UsuarioModificacion = rCaracter.Usuario;
 
             _rCaracterRepository.EditarReemplazoCaracter(rCaracterEntity);
-            rCaracter.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), rCaracter.Activo);
+            rCaracter.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(rCaracter.Activo));
             return rCaracter;
         }
         public bool CambiarEstado(int idRCaracter)

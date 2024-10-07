@@ -33,7 +33,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
                 Banco = tipoPlanilla.Banco
             };
             _tipoPlanillaRepository.Actualizar(tbTipoPlantilla);
-            tipoPlanilla.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), tbTipoPlantilla.Activo);
+            tipoPlanilla.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(tbTipoPlantilla.Activo));
             return tipoPlanilla;
         }
 
@@ -60,7 +60,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
             };
             _tipoPlanillaRepository.Guardar(tbTipoPlantilla);
             tipoPlanilla.Id = tbTipoPlantilla.Id;
-            tipoPlanilla.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), tbTipoPlantilla.Activo);
+            tipoPlanilla.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(tbTipoPlantilla.Activo));
             return tipoPlanilla;
         }
 
@@ -71,7 +71,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
             {
                 Id = tip.Id,
                 Activo = tip.Activo.Value,
-                Estado = Enum.GetName(typeof(Enums.EstadoRegistro), tip.Activo),
+                Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(tip.Activo)),
                 Nombre = tip.Nombre,
                 Prefijo = tip.Prefijo
             }

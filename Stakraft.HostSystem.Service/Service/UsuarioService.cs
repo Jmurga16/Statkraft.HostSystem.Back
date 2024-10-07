@@ -50,7 +50,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
             _usuarioRepository.CrearUsuario(usuarioEntity);
 
             usuario.IdUsuario = usuarioEntity.Id;
-            usuario.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), usuario.Activo);
+            usuario.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(usuario.Activo));
 
             return usuario;
         }
@@ -67,7 +67,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
             usuarioEntity.IdPerfil = usuario.IdPerfil;
 
             _usuarioRepository.EditarUsuario(usuarioEntity);
-            usuario.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), usuario.Activo);
+            usuario.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(usuario.Activo));
             return usuario;
         }
 

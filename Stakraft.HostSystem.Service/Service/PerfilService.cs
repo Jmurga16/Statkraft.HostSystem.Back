@@ -20,7 +20,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
                 IdPerfil = perfil.IdPerfil,
                 NombrePerfil = perfil.NombrePerfil,
                 Activo = perfil.Activo,
-                Estado = Enum.GetName(typeof(Enums.EstadoRegistro), perfil.Activo)
+                Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(perfil.Activo))
             }).ToList();
 
             return listPerfiles;
@@ -52,7 +52,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
             perfilEntity.FechaModificacion = DateTime.Now;
             perfilEntity.UsuarioModificacion = perfil.Usuario;
             _perfilRepository.EditarPerfil(perfilEntity);
-            perfil.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), perfil.Activo);
+            perfil.Estado = Enum.GetName(typeof(Enums.EstadoRegistro), Convert.ToInt32(perfil.Activo));
             return perfil;
         }
 

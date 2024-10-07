@@ -73,7 +73,7 @@ namespace Stakraft.HostSystem.Service.Service.Impl
                 StringConnection = sto.Connection,
                 Container = sto.Container,
                 TipoStorage = sto.Tipo,
-                NombreTipoStorage = Enum.GetName(typeof(Enums.TipoBlobStorage), sto.Tipo),
+                NombreTipoStorage = Enum.GetName(typeof(Enums.TipoBlobStorage), Convert.ToInt32(sto.Tipo)),
                 Id = sto.Id
             }).OrderBy(sto => sto.TipoStorage).ToList();
             return ListaStorageOut;
