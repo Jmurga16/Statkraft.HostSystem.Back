@@ -24,7 +24,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         public DateTime? FechaModificacion { get; set; }
         [Column("usuario_modificacion")]
         [StringLength(255)]
-        public string UsuarioModificacion { get; set; }
+        public string? UsuarioModificacion { get; set; }
 
         [ForeignKey(nameof(IdOpcion))]
         [InverseProperty(nameof(Opciones.PerfilOpcion))]

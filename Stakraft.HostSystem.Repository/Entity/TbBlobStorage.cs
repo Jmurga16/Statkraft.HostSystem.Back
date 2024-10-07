@@ -30,7 +30,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         public DateTime? FecModificacion { get; set; }
         [Column("usu_modificacion")]
         [StringLength(255)]
-        public string UsuModificacion { get; set; }
+        public string? UsuModificacion { get; set; }
         [Column("estado")]
         public int Estado { get; set; }
         [Column("container")]
