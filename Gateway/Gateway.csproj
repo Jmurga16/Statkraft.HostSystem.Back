@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stakraft.HostSystem.Repository\Stakraft.HostSystem.Repository.csproj" />
     <ProjectReference Include="..\Stakraft.HostSystem.Service\Stakraft.HostSystem.Service.csproj" />
-    <ProjectReference Include="..\Stakraft.HostSystem.Support\Stakraft.HostSystem.Support.csproj" />
   </ItemGroup>
 
 </Project>
