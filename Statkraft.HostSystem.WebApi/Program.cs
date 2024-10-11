@@ -7,10 +7,12 @@ using Stakraft.HostSystem.Repository.Entity;
 using Stakraft.HostSystem.Support.soporte;
 using Serilog.Events;
 using Serilog;
+using Stakraft.HostSystem.Service.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 ConfigurationManager configuration = builder.Configuration;
+
 
 // Add services to the container.
 
@@ -85,19 +87,32 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-//app.UseAuthentication();
+app.UseAuthentication();
 
-//app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
 app.UseSwagger();
 
 app.UseSwaggerUI();
 
-
 app.UseHangfireDashboard();
 
+var cronTimeProcesar = int.Parse(configuration["hangfire:interval-procesar"]);
+var cronTimeSend = int.Parse(configuration["hangfire:interval-send"]);
+var cronTimeOut = int.Parse(configuration["hangfire:interval-out"]);
+var prefixOut = configuration["sftp:sufixOut"];
+var prefixAutorizado = configuration["sftp:sufixAutorizado"];
+var prefixRecibido = configuration["sftp:sufixRecibido"];
+var prefixInvalido = configuration["sftp:sufixInvalido"];
+var bei = configuration["sftp:bei"];
+var pais = configuration["sftp:pais"];
+
+RecurringJob.AddOrUpdate<IScheduleService>(job => job.CrearArchivoBanco(bei, pais), "*/" + cronTimeProcesar + " * * * *");
+RecurringJob.AddOrUpdate<IScheduleService>(job => job.TransferirArchivosSFTP(), "*/" + cronTimeSend + " * * * *");
+RecurringJob.AddOrUpdate<IScheduleService>(job => job.LeerRespuestaOutSFTP(prefixOut, prefixRecibido, prefixInvalido, prefixAutorizado), "*/" + cronTimeOut + " * * * *");
+
+SetupSerilog(configuration);
 
 app.MapControllers();
-
 
 app.Run();

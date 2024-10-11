@@ -7,7 +7,7 @@ using Stakraft.HostSystem.Support.SoporteEnum;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ArchivoController : Controller

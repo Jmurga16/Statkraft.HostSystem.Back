@@ -6,7 +6,7 @@ using Stakraft.HostSystem.Support.SoporteDto;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StorageController : ControllerBase

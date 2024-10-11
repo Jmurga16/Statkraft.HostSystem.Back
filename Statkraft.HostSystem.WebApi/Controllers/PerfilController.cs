@@ -5,7 +5,7 @@ using Stakraft.HostSystem.Service.ServiceDto.Perfil;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("mantenimiento/[controller]")]
     [ApiController]
     public class PerfilController : ControllerBase
