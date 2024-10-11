@@ -1,6 +1,5 @@
 using Hangfire;
 using Hangfire.MemoryStorage;
-
 using Gateway.Middleware;
 using Gateway.Services;
 using Microsoft.EntityFrameworkCore;
@@ -13,16 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 ConfigurationManager configuration = builder.Configuration;
 
-
 // Add services to the container.
 
 builder.Services.AddDbContext<HostToHostDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
-
 //Agregar CORS
 builder.Services.ControlarCorsOrigin();
 //Agregar Tokens
-//builder.Services.ControlarToken(configuration);
+builder.Services.ControlarToken(configuration);
 //Controladores
 builder.Services.AddControllers(options => options.Filters.Add(new HttpResponseExceptionFilter()));
 //Excepcion de Peticion
@@ -78,19 +75,29 @@ void SetupSerilog(IConfiguration configurationApp)
 
 var app = builder.Build();
 
-app.UseHangfireDashboard();
+app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseCors("MyPolicy");
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
 
+//app.UseAuthentication();
+
+//app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
+
+
+app.UseHangfireDashboard();
+
+
 app.MapControllers();
+
 
 app.Run();
