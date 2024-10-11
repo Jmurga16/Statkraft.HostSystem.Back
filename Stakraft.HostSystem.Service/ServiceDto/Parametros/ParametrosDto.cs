@@ -9,6 +9,6 @@ namespace Stakraft.HostSystem.Service.ServiceDto.Parametros
         public string NombreParametro { get; set; }
         [JsonConverter(typeof(CifradorConverter))]
         public string ValorParametro { get; set; }
-        public string Usuario { get; set; }
+        public string? Usuario { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         public string? UsuarioModificacion { get; set; }
         [Column("password")]
         [StringLength(300)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
         [Column("email")]
         [StringLength(255)]
         public string Email { get; set; }
