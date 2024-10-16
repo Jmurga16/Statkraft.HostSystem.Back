@@ -10,9 +10,9 @@ namespace Stakraft.HostSystem.Repository.Entity
         public int Id { get; set; }
         [Column("nombre_parametro")]
         [StringLength(255)]
-        public string NombreParametro { get; set; }
+        public string? NombreParametro { get; set; }
         [Column("valor_parametro", TypeName = "text")]
-        public string ValorParametro { get; set; }
+        public string? ValorParametro { get; set; }
         [Column("fecha_creacion", TypeName = "datetime")]
         public DateTime? FechaCreacion { get; set; }
         [Column("usuario_creacion")]

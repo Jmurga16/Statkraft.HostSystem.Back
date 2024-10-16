@@ -19,7 +19,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         public DateTime? FechaCreacion { get; set; }
         [Column("usuario_creacion")]
         [StringLength(255)]
-        public string UsuarioCreacion { get; set; }
+        public string UsuarioCreacion { get; set; } = "";
         [Column("fecha_modificacion", TypeName = "datetime")]
         public DateTime? FechaModificacion { get; set; }
         [Column("usuario_modificacion")]
@@ -28,9 +28,9 @@ namespace Stakraft.HostSystem.Repository.Entity
 
         [ForeignKey(nameof(IdOpcion))]
         [InverseProperty(nameof(Opciones.PerfilOpcion))]
-        public virtual Opciones IdOpcionNavigation { get; set; }
+        public virtual Opciones? IdOpcionNavigation { get; set; }
         [ForeignKey(nameof(IdPerfil))]
         [InverseProperty(nameof(Perfiles.PerfilOpcion))]
-        public virtual Perfiles IdPerfilNavigation { get; set; }
+        public virtual Perfiles? IdPerfilNavigation { get; set; }
     }
 }

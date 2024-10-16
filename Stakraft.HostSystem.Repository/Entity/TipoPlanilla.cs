@@ -16,10 +16,10 @@ namespace Stakraft.HostSystem.Repository.Entity
         public int Id { get; set; }
         [Column("nombre")]
         [StringLength(255)]
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
         [Column("usuario_creacion")]
         [StringLength(255)]
-        public string UsuarioCreacion { get; set; }
+        public string? UsuarioCreacion { get; set; }
         [Column("fecha_creacion", TypeName = "datetime")]
         public DateTime? FechaCreacion { get; set; }
         [Column("usuario_modificacion")]
@@ -31,10 +31,10 @@ namespace Stakraft.HostSystem.Repository.Entity
         public bool? Activo { get; set; }
         [Column("prefijo")]
         [StringLength(5)]
-        public string Prefijo { get; set; }
+        public string? Prefijo { get; set; }
         [Column("banco")]
         [StringLength(20)]
-        public string Banco { get; set; }
+        public string? Banco { get; set; }
 
         [InverseProperty("IdTipoPlanillaNavigation")]
         public virtual ICollection<Archivo> Archivo { get; set; }

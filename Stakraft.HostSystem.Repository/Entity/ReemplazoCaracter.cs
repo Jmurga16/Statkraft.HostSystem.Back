@@ -11,17 +11,17 @@ namespace Stakraft.HostSystem.Repository.Entity
         public int Id { get; set; }
         [Column("valor_original")]
         [StringLength(1)]
-        public string ValorOriginal { get; set; }
+        public string? ValorOriginal { get; set; }
         [Column("valor_reemplazo")]
         [StringLength(255)]
-        public string ValorReemplazo { get; set; }
+        public string? ValorReemplazo { get; set; }
         [Column("activo")]
         public bool Activo { get; set; }
         [Column("fecha_creacion", TypeName = "datetime")]
         public DateTime? FechaCreacion { get; set; }
         [Column("usuario_creacion")]
         [StringLength(255)]
-        public string UsuarioCreacion { get; set; }
+        public string? UsuarioCreacion { get; set; }
         [Column("fecha_modificacion", TypeName = "datetime")]
         public DateTime? FechaModificacion { get; set; }
         [Column("usuario_modificacion")]

@@ -19,7 +19,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         public DateTime? FechaCreacion { get; set; }
         [Column("mensaje")]
         [StringLength(255)]
-        public string Mensaje { get; set; }
+        public string? Mensaje { get; set; }
 
         [ForeignKey(nameof(IdArchivo))]
         [InverseProperty(nameof(Archivo.LogArchivos))]

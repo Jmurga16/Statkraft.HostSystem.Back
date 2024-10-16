@@ -16,7 +16,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         public DateTime? FechaCreacion { get; set; }
         [Column("usuario_creacion")]
         [StringLength(255)]
-        public string UsuarioCreacion { get; set; }
+        public string? UsuarioCreacion { get; set; }
         [Column("fecha_modificacion", TypeName = "datetime")]
         public DateTime? FechaModificacion { get; set; }
         [Column("usuario_modificacion")]
@@ -27,13 +27,13 @@ namespace Stakraft.HostSystem.Repository.Entity
         public string? Password { get; set; }
         [Column("email")]
         [StringLength(255)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [Column("user_name")]
         [StringLength(255)]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         [Column("display_name")]
         [StringLength(255)]
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
 
         [ForeignKey(nameof(IdPerfil))]
         [InverseProperty(nameof(Perfiles.Usuarios))]

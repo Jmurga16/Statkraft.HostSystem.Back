@@ -16,7 +16,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         public int Id { get; set; }
         [Column("nombre_perfil")]
         [StringLength(255)]
-        public string NombrePerfil { get; set; }
+        public string? NombrePerfil { get; set; }
         [Column("activo")]
         public bool Activo { get; set; }
         [Column("fecha_creacion", TypeName = "datetime")]
@@ -24,7 +24,7 @@ namespace Stakraft.HostSystem.Repository.Entity
         [Required]
         [Column("usuario_creacion")]
         [StringLength(255)]
-        public string UsuarioCreacion { get; set; }
+        public string UsuarioCreacion { get; set; } = "";
         [Column("fecha_modificacion", TypeName = "datetime")]
         public DateTime? FechaModificacion { get; set; }
         [Column("usuario_modificacion")]

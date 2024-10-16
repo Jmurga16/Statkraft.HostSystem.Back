@@ -13,9 +13,10 @@ namespace Stakraft.HostSystem.Repository.Entity
         [Key]
         [Column("id")]
         public int Id { get; set; }
+
         [Column("nombre_estado")]
         [StringLength(255)]
-        public string NombreEstado { get; set; }
+        public string? NombreEstado { get; set; }
 
         [InverseProperty("IdEstadoNavigation")]
         public virtual ICollection<Archivo> Archivo { get; set; }
