@@ -3,7 +3,7 @@
     public class ParametrosRepositoryDto
     {
         public int IdParametro { get; set; }
-        public string NombreParametro { get; set; }
-        public string ValorParametro { get; set; }
+        public string? NombreParametro { get; set; }
+        public string? ValorParametro { get; set; }
     }
 }
