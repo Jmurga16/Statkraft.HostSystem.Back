@@ -16,10 +16,13 @@ namespace Gateway.Services
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
+                    //options.UseSecurityTokenValidators = true;
+                    //options.IncludeErrorDetails = true;
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = true;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
+                        //LogValidationExceptions = true,
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,

@@ -17,18 +17,42 @@ namespace Stakraft.HostSystem.Support.Token.Impl
         }
         public string GenerateAccessToken(IEnumerable<Claim> claims)
         {
+            var tokenString = "";
+
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:Key"]));
+
             var signIn = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            var tokeOptions = new JwtSecurityToken(
-                issuer: _configuration["jwt:Issuer"],
-                audience: _configuration["jwt:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["jwt:expires"])),
-                signingCredentials: signIn
-            );
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+
+            var dicClaim = ConvertClaims(claims);
+
+            SecurityTokenDescriptor securityTokenDescriptor = new()
+            {
+                Issuer = _configuration["jwt:Issuer"],
+                Audience = _configuration["jwt:Audience"],
+                Claims = dicClaim,
+                Expires = DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["jwt:expires"])),
+                SigningCredentials = signIn,
+                NotBefore = DateTime.Now
+            };
+
+            if (securityTokenDescriptor != null)
+            {
+                tokenString = new JwtSecurityTokenHandler().CreateEncodedJwt(securityTokenDescriptor);
+            }
+
             return tokenString;
         }
+
+        public IDictionary<string, object> ConvertClaims(IEnumerable<Claim> claims)
+        {
+            return claims
+                .GroupBy(i => i.Type)
+                .ToDictionary
+                (i => i.Key, i => (object)
+                    (i.Count() == 1 ? i.First().Value : i.Select(i => i.Value).ToArray())
+                );
+        }
+
         public string GenerateRefreshToken()
         {
             var randomNumber = new byte[32];

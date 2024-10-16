@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Stakraft.HostSystem.Service.Service;
 using Stakraft.HostSystem.Service.ServiceDto.ActiveDirectory;
 using Stakraft.HostSystem.Service.ServiceDto.Usuario;
 
 namespace Statkraft.HostSystem.WebApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
